@@ -1,10 +1,10 @@
-
 <?php
 
 namespace KL;
 
 use KL\CI;
 use pocketmine\Player;
+use pocketmine\Server;
 
 class colorUI
 {
@@ -86,6 +86,6 @@ class colorUI
         $form->addButton('§l§eYellow');
         $form->addButton('§l§fWhite');
         $form->sendToPlayer($player);
-    	}
+    }
  
 }

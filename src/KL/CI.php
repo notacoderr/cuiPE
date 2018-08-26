@@ -9,7 +9,6 @@ use pocketmine\Server;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\{TextFormat, Config};
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 
 use pocketmine\utils\TextFormat as TF;
@@ -108,14 +107,12 @@ class CI extends PluginBase implements Listener
         	return true;
 	}
 	
-	public function onChat(PlayerChatEvent $event) : void
+	public function getCustomChatColor(Player $player)
 	{
 		$name = $event->getPlayer()->getName();
 		$db = $this->db->query("SELECT * FROM colors WHERE player='$name';");
-		$datas = $db->fetchArray(SQLITE3_ASSOC);
-		$color = $datas["color"];
-		
-		$this->purechat->getChatFormat($event->getPlayer(), (string) $color . $event->getMessage());
+		$mycolor = $db->fetchArray(SQLITE3_ASSOC);
+		return $mycolor["color"];
 	}
 	
 	public function saveColor(Player $player, string $color ) : void

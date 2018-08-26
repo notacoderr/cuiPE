@@ -109,7 +109,7 @@ class CI extends PluginBase implements Listener
 	
 	public function getCustomChatColor(Player $player)
 	{
-		$name = $event->getPlayer()->getName();
+		$name = $player->getName();
 		$db = $this->db->query("SELECT * FROM colors WHERE player='$name';");
 		$mycolor = $db->fetchArray(SQLITE3_ASSOC);
 		return $mycolor["color"];

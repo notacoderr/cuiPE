@@ -17,13 +17,14 @@ use pocketmine\utils\TextFormat as TF;
 class CI extends PluginBase implements Listener
 {   
     
-    	public $formapi;
+    	public $formapi, $purechat;
 	public $pipol;
 	
     public function onEnable() : void
     {
 
         $this->formapi = Server::getInstance()->getPluginManager()->getPlugin('FormAPI');
+	$this->purechat = Server::getInstance()->getPluginManager()->getPlugin('PureChat');
 	    
         $this->getLogger()->info("Applying updates...");
 		
@@ -113,7 +114,8 @@ class CI extends PluginBase implements Listener
 		$db = $this->db->query("SELECT * FROM colors WHERE player='$name';");
 		$datas = $db->fetchArray(SQLITE3_ASSOC);
 		$color = $datas["color"];
-		$event->setMessage((string) $color . $event->getMessage() );
+		
+		$this->purechat->getChatFormat($event->getPlayer(), (string) $color . $event->getMessage());
 	}
 	
 	public function saveColor(Player $player, string $color ) : void

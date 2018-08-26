@@ -20,7 +20,7 @@ class CI extends PluginBase implements Listener
     	public $formapi;
 	public $pipol;
 	
-    public function onEnable() : vodi
+    public function onEnable() : void
     {
 
         $this->formapi = Server::getInstance()->getPluginManager()->getPlugin('FormAPI');

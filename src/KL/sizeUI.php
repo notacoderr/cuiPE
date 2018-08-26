@@ -23,9 +23,9 @@ class sizeUI
                 switch ($button)
                 {
 					case 0:
-						if($player->hasPermission('c.size.ant'))
+						if($player->hasPermission('sakura.vip'))
 						{
-							$this->resize($player, (float) 0.1111); //ant
+							$this->resize($player, (float) 0.123); //ant
 							break;
 						} else {
 							$this->noPerm($player);
@@ -33,27 +33,39 @@ class sizeUI
 						}
 
 					case 1:
-						if($player->hasPermission('c.size.fairy'))
+						if($player->hasPermission('sakura.vip'))
 						{
-							$this->resize($player, (float) 0.25); //fairy
+							$this->resize($player, (float) 0.2765); //fairy
+							break;
+						} else {
+							$this->noPerm($player);
+							break;
+						}
+					case 2:
+						if($player->hasPermission('sakura.vip'))
+						{
+							$this->resize($player, (float) 0.3701); //tiny
 							break;
 						} else {
 							$this->noPerm($player);
 							break;
 						}
 
-                   	case 2:
-						$this->resize($player, (float) 0.45511); //baby
+                   			case 3:
+						$this->resize($player, (float) 0.4551); //baby
 							break;
-                    case 3:
+                    			case 4:
 						$this->resize($player, (float) 0.6331); //kid
 							break;
-					case 4:
+					case 5:
+						$this->resize($player, (float) 0.8912); //teen
+							break;
+					case 6:
 						$this->resize($player, (float) 1.0); //normal
 							break;
 
-					case 5:
-						if($player->hasPermission('c.size.giant'))
+					case 7:
+						if($player->hasPermission('sakura.vip'))
 						{
 							$this->resize($player, (float) 1.5111);//giant
 								break;
@@ -62,10 +74,19 @@ class sizeUI
 								break;
 						}
 
-					case 6:
-						if($player->hasPermission('c.size.titan'))
+					case 8:
+						if($player->hasPermission('sakura.vip'))
 						{
-							$this->resize($player, (float) 3.0322);//titan
+							$this->resize($player, (float) 3.422);//tera
+								break;
+						} else {
+							$this->noPerm($player);
+								break;
+						}
+					case 9:
+						if($player->hasPermission('sakura.vip'))
+						{
+							$this->resize($player, (float) 5.1322);//titan
 								break;
 						} else {
 							$this->noPerm($player);
@@ -80,21 +101,24 @@ class sizeUI
 				return true;
             }
         });
-        $form->setTitle('§l§dKawaii §fCosmetics');
-		$form->addButton('§lAnt§r [VIP]', 1, $this->main->settings->getNested('size.ant'));
-		$form->addButton('§lFairy§r [VIP/Patron]', 1, $this->main->settings->getNested('size.fairy'));
-		$form->addButton('§lBaby', 1, $this->main->settings->getNested('size.baby'));
-		$form->addButton('§lKid', 1, $this->main->settings->getNested('size.kid'));
-		$form->addButton('§lNormal', 1, $this->main->settings->getNested('size.normal'));
-		$form->addButton('§lGiant§r [VIP/Patron]', 1, $this->main->settings->getNested('size.giant'));
-		$form->addButton('§lTitan§r [VIP]', 1, $this->main->settings->getNested('size.titan'));
+        $form->setTitle('§l§fCosmetics');
+		$form->addButton('§lAnt§r [VIP & up]'); //0
+		$form->addButton('§lFairy§r [VIP & up]'); //1
+		$form->addButton('§lTiny§r [VIP & up]'); //2
+		$form->addButton('§lBaby'); //3
+		$form->addButton('§lKid'); //4
+	    	$form->addButton('§lTeen'); //5
+	    	$form->addButton('§lNormal'); //6
+		$form->addButton('§lGiant§r [VIP & up]'); //7
+	    	$form->addButton('§lTera§r [VIP & up]'); //8
+		$form->addButton('§lTitan§r [VIP & up]'); //9
         $form->sendToPlayer($player);
-    }
+    	}
     
-    private function noPerm($player)
-    {
-    	$player->sendMessage('<•> §cI apologise, it seems that you have no permission.');
-    }
+	private function noPerm($player)
+    	{
+    		$player->sendMessage('<•> §cI apologise, it seems that you have no permission.');
+    	}
 
 	private function resize(Player $player, float $scale) : void
 	{

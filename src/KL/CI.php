@@ -17,14 +17,15 @@ use pocketmine\utils\TextFormat as TF;
 class CI extends PluginBase implements Listener
 {   
     
-    public $formapi;
+    	public $formapi;
 	public $pipol;
 	
-    public function onEnable()
+    public function onEnable() : vodi
     {
 
-        $this->formapi = $this->getServer()->getPluginManager()->getPlugin('FormAPI');
-        $this->getLogger()->info("Beautifying....");
+        $this->formapi = Server::getInstance()->getPluginManager()->getPlugin('FormAPI');
+	    
+        $this->getLogger()->info("Applying updates...");
 		
         $this->particles = new particlesUI($this);
         $this->prefix = new prefixUI($this);
@@ -36,7 +37,7 @@ class CI extends PluginBase implements Listener
         $this->saveResource('main.yml');
         $this->settings = new Config($this->getDataFolder() . "main.yml", CONFIG::YAML);
 
-        $this->db = new \SQLite3($this->getDataFolder() . "colors.db");
+        $this->db = new \SQLite3($this->getDataFolder() . "pcolors.db");
 	$this->db->exec("CREATE TABLE IF NOT EXISTS colors (player TEXT PRIMARY KEY COLLATE NOCASE, color TEXT);");
 
     }
@@ -112,7 +113,7 @@ class CI extends PluginBase implements Listener
 		$db = $this->db->query("SELECT * FROM colors WHERE player='$name';");
 		$datas = $db->fetchArray(SQLITE3_ASSOC);
 		$color = $datas["color"];
-		$event->setMessage($color . $event->getMessage() );
+		$event->setMessage((string) $color . $event->getMessage() );
 	}
 	
 	public function saveColor(Player $player, string $color ) : void
